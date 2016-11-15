@@ -35,13 +35,14 @@ class IssuuAPI(object):
         """
         raise NotImplementedError()
 
-    def list_documents(self):
+    def list_documents(self, data=None):
         """
         List documents for this user.
         """
         return self._query(
             url = 'http://api.issuu.com/1_0',
-            action = 'issuu.documents.list'
+            action = 'issuu.documents.list',
+            data=data
         )
 
     def upload_document(self, file, title=''):

@@ -12,7 +12,7 @@ setup(
     long_description = open('README.rst').read() + '\n\n' + open('HISTORY.rst').read(),
     author = 'Johannes Gorset',
     author_email = 'johannes@hyper.no',
-    url = 'http://github.com/hyperoslo/pissuu',
+    url = 'https://github.com/michaelfillier/pissuu',
     packages = [
         'pissuu'
     ],
