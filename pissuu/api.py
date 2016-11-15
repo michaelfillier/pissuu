@@ -39,6 +39,9 @@ class IssuuAPI(object):
         """
         List documents for this user.
         """
+        if not data:
+            data = {}
+            
         return self._query(
             url = 'http://api.issuu.com/1_0',
             action = 'issuu.documents.list',
