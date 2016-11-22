@@ -115,10 +115,26 @@ class IssuuAPI(object):
         """
         raise NotImplementedError()
 
+    def list_document_embeds(self, data=None):
+        """
+        List documents embeds for this user.
+        """
+        if not data:
+            data = {}
+            
+        return self._query(
+            url = 'http://api.issuu.com/1_0',
+            action = 'issuu.document_embeds.list',
+            data=data
+        )
+
+
+
     def _query(self, url, action, data=None):
         """
         Low-level access to the Issuu API.
         """
+
         if not data:
             data = {}
 
@@ -127,6 +143,8 @@ class IssuuAPI(object):
             'format': 'json',
             'action': action
         })
+
+        # print data
 
         data['signature'] = self._sign(data)
 
@@ -139,6 +157,8 @@ class IssuuAPI(object):
         for key in files:
             data.pop(key)
 
+        print url
+        
         response = requests.post(
             url = url,
             data = data,
@@ -170,6 +190,8 @@ class IssuuAPI(object):
         for key in sorted(keys):
             if isinstance(data[key], (str, unicode)):
                 signature += key + data[key]
+
+        print signature
 
         return md5.new(signature).hexdigest()
 
